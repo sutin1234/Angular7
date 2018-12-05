@@ -1,0 +1,15 @@
+<h3>Angular Drag Drop Example</h3>
+
+<div class="outter-list">
+
+  <div cdkDropList class="example-list" [cdkDropListData]="movies" (cdkDropListDropped)="drop($event)" #movieList="cdkDropList"
+    [cdkDropListConnectedTo]="newMovieList" [cdkDropListEnterPredicate]="evenPredicate">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+  </div>
+
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListData]="newMovies" #newMovieList="cdkDropList"
+    [cdkDropListConnectedTo]="movieList" [cdkDropListEnterPredicate]="noReturnPredicate">
+    <div class="example-box" *ngFor="let _movie of newMovies" cdkDrag>{{_movie}}</div>
+  </div>
+
+</div>
