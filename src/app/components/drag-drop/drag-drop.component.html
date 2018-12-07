@@ -1,15 +1,90 @@
-<h3>Angular Drag Drop Example</h3>
+<div class="example-container">
+  <h2>Breakfast</h2>
+  <div cdkDropList
+       #breakfastList="cdkDropList"
+       [cdkDropListData]="breakfast"
+       class="example-list-0"
+       data-config="B"
+       (cdkDropListDropped)="drop($event)">
+    <div class="example-box1" *ngFor="let _item of breakfast">
 
-<div class="outter-list">
-
-  <div cdkDropList class="example-list" [cdkDropListData]="movies" (cdkDropListDropped)="drop($event)" #movieList="cdkDropList"
-    [cdkDropListConnectedTo]="newMovieList" [cdkDropListEnterPredicate]="evenPredicate">
-    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+      <div class="items" style="width: 100%;">
+        <div class="item-div">
+            <div class="example-box" *ngIf="_item?.imageURL">
+                <img [src]="_item?.imageURL" style="width: 100px; height: 100px;">
+                <div class="header-text">{{ _item?.name }}</div>
+              </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListData]="newMovies" #newMovieList="cdkDropList"
-    [cdkDropListConnectedTo]="movieList" [cdkDropListEnterPredicate]="noReturnPredicate">
-    <div class="example-box" *ngFor="let _movie of newMovies" cdkDrag>{{_movie}}</div>
+  <h2>Lunch</h2>
+  <div cdkDropList
+       #lunchList="cdkDropList"
+       [cdkDropListData]="lunch"
+       class="example-list-0"
+       data-config="L"
+       (cdkDropListDropped)="drop($event)">
+    <div class="example-box1" *ngFor="let _item of lunch">
+
+      <div class="items" style="width: 100%;">
+        <div class="item-div">
+            <div class="example-box" *ngIf="_item?.imageURL">
+                <img [src]="_item?.imageURL" style="width: 100px; height: 100px;">
+                <div class="header-text">{{ _item?.name }}</div>
+              </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <h2>Evening</h2>
+  <div cdkDropList
+       #eveningList="cdkDropList"
+       [cdkDropListData]="evening"
+       class="example-list-0"
+       [cdkDropListEnterPredicate]="evenPredicate"
+       (cdkDropListDropped)="drop($event)"
+       data-config="E">
+    <div class="example-box1" *ngFor="let _item of evening">
+
+      <div class="items" style="width: 100%;">
+        <div class="item-div">
+            <div class="example-box" *ngIf="_item?.imageURL">
+                <img  [src]="_item?.imageURL" style="width: 100px; height: 100px;">
+                <div class="header-text">{{ _item?.name }}</div>
+              </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 
 </div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListConnectedTo]="[breakfastList, lunchList, eveningList]">
+
+    <div class="example-box"
+        *ngFor="let item of done"
+        cdkDrag
+        [cdkDragData]="item"
+        (cdkDragStarted)="dragStarted($event)"
+        (cdkDragEnded)="dragEnded($event)">
+      <img [src]="item?.imageURL" style="width: 100px; height: 100px;">
+      <div class="header-text">{{ item?.name }}</div>
+    </div>
+
+  </div>
+</div>
+
