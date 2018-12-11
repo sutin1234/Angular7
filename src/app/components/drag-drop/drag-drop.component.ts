@@ -53,6 +53,11 @@ export class DragDropComponent implements OnInit {
     this.getContainer($containerID, event.container.data, event.currentIndex, event.previousContainer.data, event.previousIndex);
 
   }
+  removeItem($listName, $item, $index){
+   if($listName == 'breakfast') this.breakfast.splice($index, 1);
+   if($listName == 'lunch') this.lunch.splice($index, 1);
+   if($listName == 'evening') this.evening.splice($index, 1);
+  }
   getContainer($containerID, $currentContainerData, $currentIndex, $prevContainerData, $prevIndex) {
 
     const $dataMovedContainer = $prevContainerData[$prevIndex].allow;

@@ -6,7 +6,10 @@
        class="example-list-0"
        data-config="B"
        (cdkDropListDropped)="drop($event)">
-    <div class="example-box1" *ngFor="let _item of breakfast">
+    <div class="example-box1"
+         *ngFor="let _item of breakfast"
+         (dblclick)="removeItem('breakfast', _item, i)"
+         title="double click to remove item">
 
       <div class="items" style="width: 100%;">
         <div class="item-div">
@@ -26,7 +29,10 @@
        class="example-list-0"
        data-config="L"
        (cdkDropListDropped)="drop($event)">
-    <div class="example-box1" *ngFor="let _item of lunch">
+    <div class="example-box1"
+         *ngFor="let _item of lunch"
+         title="double click to remove item"
+         (dblclick)="removeItem('lunch', _item, i)">
 
       <div class="items" style="width: 100%;">
         <div class="item-div">
@@ -48,7 +54,11 @@
        [cdkDropListEnterPredicate]="evenPredicate"
        (cdkDropListDropped)="drop($event)"
        data-config="E">
-    <div class="example-box1" *ngFor="let _item of evening">
+
+    <div class="example-box1"
+         *ngFor="let _item of evening; let i = index;"
+         title="double click to remove item"
+         (dblclick)="removeItem('evening', _item, i)">
 
       <div class="items" style="width: 100%;">
         <div class="item-div">
